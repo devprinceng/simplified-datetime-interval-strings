@@ -14,6 +14,9 @@
  */
 class DateTimeIntervalString
 {    
+    /**
+     * @var string $timezone default timezone
+     */
     public static string $timezone; 
     
     /**
@@ -63,7 +66,7 @@ class DateTimeIntervalString
                 }
             }
         } else {
-            $interval = "$year years ago";
+            $interval = "$year yrs ago";
         }
 
         return $interval;
