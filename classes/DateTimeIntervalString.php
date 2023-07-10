@@ -10,7 +10,7 @@
  * @license MIT License
  */
 
- /**
+/**
  * Represents datetime interval strings such as '0 sec ago', '1 mins ago', '2 hours ago', '2 Days ago','months ago', years ago.
  * 
  * Example:
@@ -19,11 +19,11 @@
  *  
  * @var string $timezone php/mysqli accepted timezone value
  * @link https://github.com/devprinceng/simplified-datetime-interval-strings
-  */
+ */
 class DateTimeIntervalString
-{    
-    public static string $timezone; 
-    
+{
+    public static string $timezone;
+
     /**
      * sets default timezone across the whole class
      * Usage: DateTimeStringInterval::setTimeZone('Africa/Lagos') 
@@ -44,21 +44,23 @@ class DateTimeIntervalString
      * @return string 
      */
     public static function get_interval(string $datetime_string): string
-    {  
+    {
         $datetime = new DateTime($datetime_string);
         $current_datetime = new DateTime('now');
         $current_datetime = new DateTime($current_datetime->format("Y-m-d H:i:s"));
         $datetime_interval = $datetime->diff($current_datetime);
         //intervals
-        $year = $datetime_interval->y; 
+        $year = $datetime_interval->y;
         $month = $datetime_interval->m;
         $day = $datetime_interval->d;
         $hour = $datetime_interval->h;
         $minute = $datetime_interval->i;
         $seconds = $datetime_interval->s;
-       
+
         if (!$year) {
-          $interval = $month <= 1 ? "$month mon, $day days ago" : "$month mon, $day days ago";
+            //skip days display if months & zero days, i.e 2 mons; not 2 mons 0 days.
+            $interval = $day < 1 ? ($month <= 1 ? "$month mon ago" : "$month mons ago") : "$month mon, $day days ago";
+
             if (!$month) {
                 $interval = $day <= 1 ? "$day day ago" : "$day days ago";
                 if (!$day) {
