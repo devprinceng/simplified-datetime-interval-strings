@@ -3,20 +3,25 @@
  * DateTimeIntervalString - a simplied Carbon alternative for PHP.
  * Handles datetime interval strings such as '0 sec ago', '1 mins ago', '2 hours ago', '2 Days ago','months ago', years ago.
  * 
- * Example:
- *  $datetime_string = "2023-07-06 12:20:28"  
- *  echo DateTimeStringInterval::get_interval($datetime_string); //5 hours ago
  * 
  * @author PRINCE OJOI <devprinceng@gmail.com>  
  * @copyright (c) 2023 Prince Ojoi
  * @link https://github.com/devprinceng/simplified-datetime-interval-strings
  * @license MIT License
  */
+
+ /**
+ * Represents datetime interval strings such as '0 sec ago', '1 mins ago', '2 hours ago', '2 Days ago','months ago', years ago.
+ * 
+ * Example:
+ *  $datetime_string = "2023-07-06 12:20:28"  
+ *  echo DateTimeStringInterval::get_interval($datetime_string); //5 hours ago
+ *  
+ * @var string $timezone php/mysqli accepted timezone value
+ * @link https://github.com/devprinceng/simplified-datetime-interval-strings
+  */
 class DateTimeIntervalString
 {    
-    /**
-     * @var string $timezone default timezone
-     */
     public static string $timezone; 
     
     /**
@@ -34,6 +39,7 @@ class DateTimeIntervalString
     /**
      * returns datetime interval strings from old-date to current date; such as '0 sec ago', '1 mins ago', '2 hours ago', '2 Days ago','months ago', years ago.
      * 
+     * @link https://github.com/devprinceng/simplified-datetime-interval-strings
      * @param string $datetime_string the old datetime string, eg: '2023-07-06 08:02:05'
      * @return string 
      */
